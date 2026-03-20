@@ -1,0 +1,11 @@
+{
+  "name": "com.funfact.measures",
+  "version": "0.1.0",
+  "displayName": "Metrics",
+  "description": "Collection of wrappers for units with utils",
+  "unity": "6000.4",
+  "author": {
+    "name": "Szymon Migowski",
+    "url": "https://github.com/twoj-user"
+  }
+}
