@@ -1,8 +1,8 @@
 {
   "name": "com.funfact.measures",
   "version": "0.1.0",
-  "displayName": "Metrics",
-  "description": "Collection of wrappers for units with utils",
+  "displayName": "Measures",
+  "description": "Collection of measure unit wrappers and utils",
   "unity": "6000.4",
   "author": {
     "name": "Szymon Migowski",
