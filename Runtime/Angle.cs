@@ -1,0 +1,38 @@
+using System;
+using UnityEngine;
+
+namespace FunFact.Measures
+{
+    public struct Angle : IComparable, IComparable<Angle>, IEquatable<Angle>, IFormattable
+    {
+        private float _raw;
+
+        public float Degrees => _raw * Mathf.Rad2Deg;
+        public float Radians => _raw;
+
+        public float Sin => Mathf.Sin(Radians);
+        public float Cos => Mathf.Cos(Radians);
+        public float Tan => Mathf.Tan(Radians);
+        
+        private Angle(float raw)
+        {
+            _raw = raw;
+        }
+        
+        public static Angle FromDegrees(float degrees) => new(degrees * Mathf.Deg2Rad);
+        public static Angle FromRadians(float radians) => new(radians);
+        
+        public static Angle FromSin(float sin) => FromRadians(Mathf.Asin(sin));
+        public static Angle FromCos(float cos) => FromRadians(Mathf.Acos(cos));
+        public static Angle FromTan(float tan) => FromRadians(Mathf.Atan(tan));
+
+        public int CompareTo(Angle other) => _raw.CompareTo(other._raw);
+        public bool Equals(Angle other) => _raw.Equals(other._raw);
+
+        public override string ToString() => $"{_raw*Mathf.Rad2Deg}°";
+        public int CompareTo(object obj) => obj is Angle other ? CompareTo(other) : 0;
+
+        public string ToString(string format, IFormatProvider formatProvider) => $"{(_raw*Mathf.Rad2Deg).ToString(format, formatProvider)}°";
+        
+    }
+}
