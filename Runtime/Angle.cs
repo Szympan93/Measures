@@ -36,5 +36,19 @@ namespace FunFact.Measures
 
         public string ToString(string format, IFormatProvider formatProvider) => $"{(_raw*Mathf.Rad2Deg).ToString(format, formatProvider)}°";
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Angle operator+(Angle a, Angle b) => new(a._raw + b._raw);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Angle operator-(Angle a, Angle b) => new(a._raw - b._raw);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Angle operator*(Angle a, float b) => new(a._raw - b);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Angle operator/(Angle a, float b) => new(a._raw - b);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Angle operator-(Angle a) => new(-a._raw);
     }
 }
