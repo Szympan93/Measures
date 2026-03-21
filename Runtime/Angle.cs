@@ -14,19 +14,19 @@ namespace FunFact.Measures
         public float Sin
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get { return Mathf.Sin(Radians); }
+            get => Mathf.Sin(Radians);
         }
 
         public float Cos
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get { return Mathf.Cos(Radians); }
+            get => Mathf.Cos(Radians);
         }
 
         public float Tan
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get { return Mathf.Tan(Radians); }
+            get => Mathf.Tan(Radians);
         }
 
         private Angle(float raw)
