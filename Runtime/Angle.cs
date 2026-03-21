@@ -49,6 +49,7 @@ namespace FunFact.Measures
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromTan(float tan) => FromRadians(Mathf.Atan(tan));
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Quaternion Euler(Angle x,  Angle y, Angle z) => Quaternion.Euler(x.Degrees, y.Degrees, z.Degrees);
 
         public int CompareTo(Angle other) => _raw.CompareTo(other._raw);
