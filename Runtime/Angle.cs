@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace FunFact.Measures
@@ -10,20 +11,42 @@ namespace FunFact.Measures
         public float Degrees => _raw * Mathf.Rad2Deg;
         public float Radians => _raw;
 
-        public float Sin => Mathf.Sin(Radians);
-        public float Cos => Mathf.Cos(Radians);
-        public float Tan => Mathf.Tan(Radians);
-        
+        public float Sin
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return Mathf.Sin(Radians); }
+        }
+
+        public float Cos
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return Mathf.Cos(Radians); }
+        }
+
+        public float Tan
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return Mathf.Tan(Radians); }
+        }
+
         private Angle(float raw)
         {
             _raw = raw;
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromDegrees(float degrees) => new(degrees * Mathf.Deg2Rad);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromRadians(float radians) => new(radians);
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromSin(float sin) => FromRadians(Mathf.Asin(sin));
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromCos(float cos) => FromRadians(Mathf.Acos(cos));
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromTan(float tan) => FromRadians(Mathf.Atan(tan));
         
         public static Quaternion Euler(Angle x,  Angle y, Angle z) => Quaternion.Euler(x.Degrees, y.Degrees, z.Degrees);
