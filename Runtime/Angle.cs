@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace FunFact.Measures
 {
-    public struct Angle : IComparable, IComparable<Angle>, IEquatable<Angle>, IFormattable
+    public readonly struct Angle : IComparable, IComparable<Angle>, IEquatable<Angle>, IFormattable
     {
-        private float _raw;
+        private readonly float _raw;
 
         public float Degrees => _raw * Mathf.Rad2Deg;
         public float Radians => _raw;
@@ -52,9 +52,9 @@ namespace FunFact.Measures
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Quaternion Euler(Angle x,  Angle y, Angle z) => Quaternion.Euler(x.Degrees, y.Degrees, z.Degrees);
 
+        public override int GetHashCode() => _raw.GetHashCode();
         public int CompareTo(Angle other) => _raw.CompareTo(other._raw);
         public bool Equals(Angle other) => _raw.Equals(other._raw);
-        public override int GetHashCode() => _raw.GetHashCode();
         public override bool Equals(object obj) => obj is Angle other && Equals(other);
 
         public override string ToString() => $"{_raw*Mathf.Rad2Deg}°";
