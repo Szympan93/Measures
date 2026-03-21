@@ -25,6 +25,8 @@ namespace FunFact.Measures
         public static Angle FromSin(float sin) => FromRadians(Mathf.Asin(sin));
         public static Angle FromCos(float cos) => FromRadians(Mathf.Acos(cos));
         public static Angle FromTan(float tan) => FromRadians(Mathf.Atan(tan));
+        
+        public static Quaternion Euler(Angle x,  Angle y, Angle z) => Quaternion.Euler(x.Degrees, y.Degrees, z.Degrees);
 
         public int CompareTo(Angle other) => _raw.CompareTo(other._raw);
         public bool Equals(Angle other) => _raw.Equals(other._raw);
