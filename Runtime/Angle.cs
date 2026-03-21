@@ -53,6 +53,8 @@ namespace FunFact.Measures
 
         public int CompareTo(Angle other) => _raw.CompareTo(other._raw);
         public bool Equals(Angle other) => _raw.Equals(other._raw);
+        public override int GetHashCode() => _raw.GetHashCode();
+        public override bool Equals(object obj) => obj is Angle other && Equals(other);
 
         public override string ToString() => $"{_raw*Mathf.Rad2Deg}°";
         public int CompareTo(object obj) => obj is Angle other ? CompareTo(other) : 0;
@@ -73,5 +75,23 @@ namespace FunFact.Measures
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle operator-(Angle a) => new(-a._raw);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator ==(Angle a, Angle b) => a._raw == b._raw;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator !=(Angle a, Angle b) => a._raw != b._raw;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >(Angle a, Angle b) => a._raw > b._raw;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <(Angle a, Angle b) => a._raw < b._raw;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >=(Angle a, Angle b) => a._raw >= b._raw;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <=(Angle a, Angle b) => a._raw <= b._raw;
     }
 }
