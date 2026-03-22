@@ -38,11 +38,9 @@ namespace FunFact.Measures
             get => Mathf.Tan(Radians);
         }
 
-        private Angle(float raw)
-        {
-            _raw = raw;
-        }
-        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private Angle(float raw) => _raw = raw;
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle FromDegrees(float degrees) => new(degrees * Mathf.Deg2Rad);
         
