@@ -8,8 +8,17 @@ namespace FunFact.Measures
     {
         private readonly float _raw;
 
-        public float Degrees => _raw * Mathf.Rad2Deg;
-        public float Radians => _raw;
+        public float Degrees
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _raw * Mathf.Rad2Deg;
+        }
+
+        public float Radians
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _raw;
+        }
 
         public float Sin
         {
