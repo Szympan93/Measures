@@ -54,58 +54,62 @@ namespace FunFact.Measures
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Deci(this float value) => value / 10;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Deci(this long value) => value / 10;
+        public static float Deci(this long value) => value / 10f;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Deci(this int value) => value / 10;
+        public static float Deci(this int value) => value / 10f;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Centi(this double value) => value / 100;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Centi(this float value) => value / 100;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Centi(this long value) => value / 100;
+        public static float Centi(this long value) => value / 100f;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Centi(this int value) => value / 100;
+        public static float Centi(this int value) => value / 100f;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Milli(this double value) => value / 1_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Milli(this float value) => value / 1_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Milli(this long value) => value / 1_000;
+        public static float Milli(this long value) => value / 1_000f;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Milli(this int value) => value / 1_000;
+        public static float Milli(this int value) => value / 1_000f;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Micro(this double value) => value / 1_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Micro(this float value) => value / 1_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Micro(this long value) => value / 1_000_000;
+        public static float Micro(this long value) => value / 1_000_000f;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Micro(this int value) => value / 1_000_000;
+        public static float Micro(this int value) => value / 1_000_000f;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Nano(this double value) => value / 1_000_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Nano(this float value) => value / 1_000_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Nano(this long value) => value / 1_000_000_000;
+        public static float Nano(this long value) => value / 1_000_000_000f;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int Nano(this int value) => value / 1_000_000_000;
+        public static float Nano(this int value) => value / 1_000_000_000f;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Pico(this double value) => value / 1_000_000_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Pico(this float value) => value / 1_000_000_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Pico(this long value) => value / 1_000_000_000_000;
+        public static float Pico(this long value) => value / 1_000_000_000_000f;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Pico(this int value) => value / 1_000_000_000_000f;
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Femto(this double value) => value / 1_000_000_000_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Femto(this float value) => value / 1_000_000_000_000_000;
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long Femto(this long value) => value / 1_000_000_000_000_000;
+        public static float Femto(this long value) => value / 1_000_000_000_000_000f;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Femto(this int value) => value / 1_000_000_000_000_000f;
     }
 }
