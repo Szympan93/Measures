@@ -7,9 +7,9 @@ namespace FunFact.Measures
     {
         private const float SCALE_METER = 1f;
         private const float SCALE_FEET = 1f/0.3048f;
-        private const float SCALE_INCHES = 39.37008f;
-        private const float SCALE_MILES = 0.00062f;
-        private const float SCALE_YARDS = 1.09361f;
+        private const float SCALE_INCHES = SCALE_FEET*12;
+        private const float SCALE_MILES = SCALE_FEET/5280;
+        private const float SCALE_YARDS = SCALE_FEET/3;
         
         private readonly float _raw;
         
