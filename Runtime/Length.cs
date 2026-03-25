@@ -7,6 +7,7 @@ namespace FunFact.Measures
     {
         private const float SCALE_METER = 1f;
         private const float SCALE_FEET = 1f/0.3048f;
+        private const float SCALE_INCHES = 39.37008f;
         private readonly float _raw;
         
         public float Meters
@@ -21,6 +22,12 @@ namespace FunFact.Measures
             get => _raw * SCALE_FEET;
         }
         
+        public float Inches
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _raw * SCALE_INCHES;
+        }
+        
         private Length(float raw) => _raw = raw;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -29,6 +36,8 @@ namespace FunFact.Measures
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Length FromFeet(float value) => new(value / SCALE_FEET);
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length FromInches(float value) => new(value / SCALE_INCHES);
         public override int GetHashCode() => _raw.GetHashCode();
         public int CompareTo(object obj) => obj is Length other ? CompareTo(other) : 0;
         public int CompareTo(Length other) => _raw.CompareTo(other._raw);
