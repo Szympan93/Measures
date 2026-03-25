@@ -12,5 +12,15 @@ namespace FunFact.Measures
         public static Length Meters(this long value) => Length.FromMeters(value);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Length Meters(this int value) => Length.FromMeters(value);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Feet(this double value) => Length.FromFeet((float)value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Feet(this float value) => Length.FromFeet(value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Feet(this long value) => Length.FromFeet(value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Feet(this int value) => Length.FromFeet(value);
+        
     }
 }

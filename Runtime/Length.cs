@@ -5,18 +5,29 @@ namespace FunFact.Measures
 {
     public readonly struct Length : IComparable, IComparable<Length>, IEquatable<Length>, IFormattable
     {
+        private const float SCALE_METER = 1f;
+        private const float SCALE_FEET = 1f/0.3048f;
         private readonly float _raw;
         
         public float Meters
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _raw;
+            get => _raw * SCALE_METER;
+        }
+        
+        public float Feet
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => _raw * SCALE_FEET;
         }
         
         private Length(float raw) => _raw = raw;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Length FromMeters(float meters) => new(meters);
+        public static Length FromMeters(float value) => new(value / SCALE_METER);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length FromFeet(float value) => new(value / SCALE_FEET);
 
         public override int GetHashCode() => _raw.GetHashCode();
         public int CompareTo(object obj) => obj is Length other ? CompareTo(other) : 0;
