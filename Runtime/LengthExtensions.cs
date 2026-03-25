@@ -31,5 +31,14 @@ namespace FunFact.Measures
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Length Inches(this int value) => Length.FromInches(value);
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Miles(this double value) => Length.FromMiles((float)value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Miles(this float value) => Length.FromMiles(value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Miles(this long value) => Length.FromMiles(value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Miles(this int value) => Length.FromMiles(value);
+        
     }
 }
