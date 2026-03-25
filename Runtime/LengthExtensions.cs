@@ -40,5 +40,13 @@ namespace FunFact.Measures
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Length Miles(this int value) => Length.FromMiles(value);
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Yards(this double value) => Length.FromYards((float)value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Yards(this float value) => Length.FromYards(value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Yards(this long value) => Length.FromYards(value);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Length Yards(this int value) => Length.FromYards(value);
     }
 }
