@@ -65,8 +65,27 @@ namespace FunFact.Measures
         public int CompareTo(Length other) => _raw.CompareTo(other._raw);
         public bool Equals(Length other) => _raw.Equals(other._raw);
         public override bool Equals(object obj) => obj is Length other && Equals(other);
-        public string ToString(string format, IFormatProvider formatProvider) => $"{_raw.ToString(format, formatProvider)}m";
-                
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if(format.EndsWith("ft in") || format.EndsWith("′ ″"))
+            {
+                int feet = (int)Feet;
+                int inches = (int)Inches;
+                inches -= feet*12;
+                if(feet == 0 && inches == 0) return "0′";
+                var s = "";
+                if(feet != 0) s += $"{feet}′";
+                if(inches != 0) s += $"{inches}″";
+                return s;
+            }
+            if(format.EndsWith("ft")) return $"{Feet.ToString(format[..^2], formatProvider)}′";
+            if(format.EndsWith("′")) return $"{Feet.ToString(format[..^1], formatProvider)}′";
+            if(format.EndsWith("in")) return $"{Inches.ToString(format[..^2], formatProvider)}″";
+            if(format.EndsWith("″")) return $"{Inches.ToString(format[..^1], formatProvider)}″";
+            if(format.EndsWith("m")) return $"{_raw.ToString(format[..^1], formatProvider)}m";
+            return $"{_raw.ToString(format, formatProvider)}m";
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Length operator+(Length a, Length b) => new(a._raw + b._raw);
         
