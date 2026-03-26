@@ -1,7 +1,12 @@
 namespace FunFact.Measures
 {
-    public enum SiPrefix
+    public enum SiPrefix : sbyte
     {
+        Quecto = -30,
+        Ronto = -27,
+        Yocto = -24,
+        Zepto = -21,
+        Atto = -18,
         Femto = -15,
         Pico = -12,
         Nano = -9,
@@ -16,6 +21,11 @@ namespace FunFact.Measures
         Mega = 6,
         Giga = 9,
         Tera = 12,
-        Peta = 15
+        Peta = 15,
+        Exa = 18,
+        Zetta = 21,
+        Yotta = 24,
+        Ronna = 27,
+        Quetta = 30,
     }
 }
