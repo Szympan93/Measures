@@ -2,72 +2,81 @@ using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+#if FUNFACT_MEASURE_DOUBLE
+using Raw = System.Double; 
+using Math = System.Math;
+#else
+using Raw = System.Single;
+using Math = UnityEngine.Mathf;
+#endif
+
 namespace FunFact.Measures
 {
     public readonly struct Angle : IComparable, IComparable<Angle>, IEquatable<Angle>, IFormattable
     {
-        private readonly float _raw;
+        private readonly Raw _raw;
+        private const Raw SCALE_DEGREES = 180/Math.PI;
 
-        public float Degrees
+        public Raw Degrees
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _raw * Mathf.Rad2Deg;
+            get => _raw * SCALE_DEGREES;
         }
 
-        public float Radians
+        public Raw Radians
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _raw;
         }
 
-        public float Sin
+        public Raw Sin
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Mathf.Sin(Radians);
+            get => Math.Sin(Radians);
         }
 
-        public float Cos
+        public Raw Cos
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Mathf.Cos(Radians);
+            get => Math.Cos(Radians);
         }
 
-        public float Tan
+        public Raw Tan
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Mathf.Tan(Radians);
+            get => Math.Tan(Radians);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private Angle(float raw) => _raw = raw;
+        private Angle(Raw raw) => _raw = raw;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle FromDegrees(float degrees) => new(degrees * Mathf.Deg2Rad);
+        public static Angle FromDegrees(Raw degrees) => new(degrees / SCALE_DEGREES);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle FromRadians(float radians) => new(radians);
+        public static Angle FromRadians(Raw radians) => new(radians);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle FromSin(float sin) => FromRadians(Mathf.Asin(sin));
+        public static Angle FromSin(Raw sin) => FromRadians(Math.Asin(sin));
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle FromCos(float cos) => FromRadians(Mathf.Acos(cos));
+        public static Angle FromCos(Raw cos) => FromRadians(Math.Acos(cos));
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle FromTan(float tan) => FromRadians(Mathf.Atan(tan));
+        public static Angle FromTan(Raw tan) => FromRadians(Math.Atan(tan));
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Euler(Angle x,  Angle y, Angle z) => Quaternion.Euler(x.Degrees, y.Degrees, z.Degrees);
+        public static Quaternion Euler(Angle x,  Angle y, Angle z) => Quaternion.Euler((float)x.Degrees, (float)y.Degrees, (float)z.Degrees);
 
         public override int GetHashCode() => _raw.GetHashCode();
         public int CompareTo(Angle other) => _raw.CompareTo(other._raw);
         public bool Equals(Angle other) => _raw.Equals(other._raw);
         public override bool Equals(object obj) => obj is Angle other && Equals(other);
 
-        public override string ToString() => $"{_raw*Mathf.Rad2Deg}°";
         public int CompareTo(object obj) => obj is Angle other ? CompareTo(other) : 0;
 
-        public string ToString(string format, IFormatProvider formatProvider) => $"{(_raw*Mathf.Rad2Deg).ToString(format, formatProvider)}°";
+        public override string ToString() => ToString(null);
+        public string ToString(string format, IFormatProvider formatProvider = null) => $"{(_raw*SCALE_DEGREES).ToString(format, formatProvider)}°";
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle operator+(Angle a, Angle b) => new(a._raw + b._raw);
@@ -76,10 +85,10 @@ namespace FunFact.Measures
         public static Angle operator-(Angle a, Angle b) => new(a._raw - b._raw);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle operator*(Angle a, float b) => new(a._raw - b);
+        public static Angle operator*(Angle a, Raw b) => new(a._raw - b);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Angle operator/(Angle a, float b) => new(a._raw - b);
+        public static Angle operator/(Angle a, Raw b) => new(a._raw - b);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Angle operator-(Angle a) => new(-a._raw);

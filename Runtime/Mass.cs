@@ -1,22 +1,28 @@
 using System;
 using System.Runtime.CompilerServices;
 
+#if FUNFACT_MEASURE_DOUBLE
+using Raw = System.Double; 
+#else
+using Raw = System.Single;
+#endif
+
 namespace FunFact.Measures
 {
     public readonly struct Mass : IComparable, IComparable<Mass>, IEquatable<Mass>, IFormattable
     {
-        private readonly float _raw;
+        private readonly Raw _raw;
         
-        public float Grams
+        public Raw Grams
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => _raw;
         }
 
-        private Mass(float raw) => _raw = raw;
+        private Mass(Raw raw) => _raw = raw;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Mass FromGrams(float grams) => new(grams);
+        public static Mass FromGrams(Raw grams) => new(grams);
 
         public override int GetHashCode() => _raw.GetHashCode();
         public int CompareTo(object obj) => obj is Mass other ? CompareTo(other) : 0;
@@ -32,10 +38,10 @@ namespace FunFact.Measures
         public static Mass operator-(Mass a, Mass b) => new(a._raw - b._raw);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Mass operator*(Mass a, float b) => new(a._raw - b);
+        public static Mass operator*(Mass a, Raw b) => new(a._raw - b);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Mass operator/(Mass a, float b) => new(a._raw - b);
+        public static Mass operator/(Mass a, Raw b) => new(a._raw - b);
         
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Mass operator-(Mass a) => new(-a._raw);
