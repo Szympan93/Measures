@@ -29,7 +29,7 @@ namespace FunFact.Measures
         public int CompareTo(Mass other) => _raw.CompareTo(other._raw);
         public bool Equals(Mass other) => _raw.Equals(other._raw);
         public override bool Equals(object obj) => obj is Mass other && Equals(other);
-        public string ToString(string format, IFormatProvider formatProvider) => $"{_raw.ToString(format, formatProvider)}g";
+        public string ToString(string format, IFormatProvider formatProvider = null) => $"{_raw.ToString(format, formatProvider)}g";
                 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Mass operator+(Mass a, Mass b) => new(a._raw + b._raw);
