@@ -1,4 +1,6 @@
-﻿#if FUNFACT_MEASURE_DOUBLE
+﻿
+using System.Collections.Generic;
+#if FUNFACT_MEASURE_DOUBLE
 using Raw = System.Double; 
 #else
 using Raw = System.Single;
@@ -44,5 +46,36 @@ namespace FunFact.Measures
         public static readonly SiPrefixData Yotta = new(SiPrefix.Yotta, (Raw)1e24, "Y");
         public static readonly SiPrefixData Ronna = new(SiPrefix.Ronna, (Raw)1e27, "R");
         public static readonly SiPrefixData Quetta = new(SiPrefix.Quetta, (Raw)1e30, "Q");
+
+        public static IEnumerable<SiPrefixData> All
+        {
+            get
+            {
+                yield return Quecto;
+                yield return Ronto;
+                yield return Yocto;
+                yield return Zepto;
+                yield return Atto;
+                yield return Femto;
+                yield return Pico;
+                yield return Nano;
+                yield return Micro;
+                yield return Milli;
+                yield return Centi;
+                yield return Deci;
+                yield return Deca;
+                yield return Hekto;
+                yield return Kilo;
+                yield return Mega;
+                yield return Giga;
+                yield return Tera;
+                yield return Peta;
+                yield return Exa;
+                yield return Zetta;
+                yield return Yotta;
+                yield return Ronna;
+                yield return Quetta;
+            }
+        }
     }
 }
