@@ -90,7 +90,15 @@ namespace FunFact.Measures
             if(format.EndsWith("′")) return $"{Feet.ToString(format[..^1], formatProvider)}′";
             if(format.EndsWith("in")) return $"{Inches.ToString(format[..^2], formatProvider)}″";
             if(format.EndsWith("″")) return $"{Inches.ToString(format[..^1], formatProvider)}″";
-            if(format.EndsWith("m")) return $"{_raw.ToString(format[..^1], formatProvider)}m";
+            if (format.EndsWith("m"))
+            {
+                var subFormat = format[..^1];
+                foreach (var prefix in SiPrefixData.All)
+                {
+                    if(subFormat.EndsWith(prefix.Symbol)) return $"{(_raw/prefix.Scale).ToString(subFormat[..^1], formatProvider)}{prefix.Symbol}m";
+                }
+                return $"{_raw.ToString(subFormat, formatProvider)}m";
+            }
             return $"{_raw.ToString(format, formatProvider)}m";
         }
 
